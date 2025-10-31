@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub de Soluções - O Valor Capital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* FUNDO ESPACIAL ANIMADO */
+        .space-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, #1a1f2e 0%, #0b0f14 50%, #000 100%);
+            z-index: 0;
+        }
+        
+        .stars-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 4s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        
+        /* NEBULOSA */
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: nebula-float 30s infinite;
+        }
+        
+        @keyframes nebula-float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, -50px) scale(1.2); }
+        }
+        
+        .nebula-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+            top: 10%;
+            right: 10%;
+        }
+        
+        .nebula-2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #f4c430 0%, transparent 70%);
+            bottom: 10%;
+            left: 5%;
+            animation-delay: -15s;
+        }
+        
+        /* HEADER */
+        .header {
+            position: relative;
+            z-index: 100;
+            padding: 1.5rem 2rem;
+            background: rgba(11, 15, 20, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(244, 196, 48, 0.2);
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: #fff;
+        }
+        
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #f4c430, #d4af37);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: #0b1120;
+        }
+        
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+        
+        .back-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(244, 196, 48, 0.1);
+            border: 1px solid #f4c430;
+            border-radius: 8px;
+            color: #f4c430;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: rgba(244, 196, 48, 0.2);
+            transform: translateX(-5px);
+        }
+        
+        /* HERO */
+        .hero {
+            position: relative;
+            z-index: 10;
+            padding: 8rem 2rem;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(244, 196, 48, 0.15);
+            border: 1px solid #f4c430;
+            border-radius: 50px;
+            color: #f4c430;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff, #f4c430);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-description {
+            font-size: 1.3rem;
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+        
+        .cta-primary {
+            display: inline-block;
+            padding: 1.25rem 3rem;
+            background: linear-gradient(135deg, #f4c430, #d4af37);
+            color: #0b1120;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(244, 196, 48, 0.4);
+            transition: all 0.3s;
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 70px rgba(244, 196, 48, 0.5);
+        }
+        
+        /* CARDS DE SOLUÇÕES */
+        .solutions {
+            position: relative;
+            z-index: 10;
+            padding: 4rem 2rem;
+        }
+        
+        .solutions-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 4rem;
+        }
+        
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .solution-card {
+            background: rgba(26, 31, 46, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(244, 196, 48, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(244, 196, 48, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-10px);
+            border-color: #f4c430;
+            box-shadow: 0 30px 80px rgba(244, 196, 48, 0.3);
+        }
+        
+        .solution-card:hover::before {
+            opacity: 1;
+        }
+        
+        .solution-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .solution-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #f4c430;
+        }
+        
+        .solution-description {
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        
+        .solution-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #f4c430;
+            text-decoration: none;
+            font-weight: 600;
+            transition: gap 0.3s;
+        }
+        
+        .solution-link:hover {
+            gap: 1rem;
+        }
+        
+        /* CTA FINAL */
+        .final-cta {
+            position: relative;
+            z-index: 10;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        
+        .cta-box {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem;
+            background: rgba(26, 31, 46, 0.6);
+            backdrop-filter: blur(20px);
+            border: 2px solid #f4c430;
+            border-radius: 30px;
+            box-shadow: 0 30px 90px rgba(244, 196, 48, 0.3);
+        }
+        
+        .cta-box h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-box p {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+        }
+        
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- FUNDO ESPACIAL -->
+    <div class="space-bg">
+        <div class="stars-layer" id="stars"></div>
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+    </div>
+    
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <div class="logo-icon">VC</div>
+                <span class="logo-text">O Valor Capital</span>
+            </a>
+            <a href="/" class="back-btn">← Voltar</a>
+        </div>
+    </header>
+    
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">⭐ Hub de Soluções</div>
+            <h1>Soluções Inteligentes para o Seu Futuro Financeiro</h1>
+            <p class="hero-description">
+                Assessoria especializada, planejamento estratégico e proteção patrimonial 
+                para quem busca tranquilidade e crescimento sustentável.
+            </p>
+            <a href="#contato" class="cta-primary">Falar com Assessor →</a>
+        </div>
+    </section>
+    
+    <!-- SOLUÇÕES -->
+    <section class="solutions">
+        <div class="solutions-container">
+            <h2 class="section-title">Nossas Soluções</h2>
+            
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">💼</div>
+                    <h3 class="solution-title">Assessoria Financeira</h3>
+                    <p class="solution-description">
+                        Análise completa do seu perfil e objetivos para construir 
+                        uma estratégia personalizada de investimentos e proteção.
+                    </p>
+                    <a href="/em-breve.html" class="solution-link">
+                        Saiba mais →
+                    </a>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">🏛️</div>
+                    <h3 class="solution-title">Planejamento Patrimonial</h3>
+                    <p class="solution-description">
+                        Estruturação inteligente para preservar e transferir 
+                        seu patrimônio com eficiência tributária e segurança jurídica.
+                    </p>
+                    <a href="/em-breve.html" class="solution-link">
+                        Saiba mais →
+                    </a>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">🛡️</div>
+                    <h3 class="solution-title">Gestão de Investimentos</h3>
+                    <p class="solution-description">
+                        Acompanhamento profissional da sua carteira com foco 
+                        em diversificação, rentabilidade e controle de risco.
+                    </p>
+                    <a href="/em-breve.html" class="solution-link">
+                        Saiba mais →
+                    </a>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">🔒</div>
+                    <h3 class="solution-title">Seguros e Proteção</h3>
+                    <p class="solution-description">
+                        Soluções completas para proteger você, sua família e 
+                        seu patrimônio contra imprevistos.
+                    </p>
+                    <a href="/em-breve.html" class="solution-link">
+                        Saiba mais →
+                    </a>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">📊</div>
+                    <h3 class="solution-title">Sucessão Patrimonial</h3>
+                    <p class="solution-description">
+                        Planejamento estratégico para garantir a continuidade 
+                        do seu legado com economia e tranquilidade.
+                    </p>
+                    <a href="/em-breve.html" class="solution-link">
+                        Saiba mais →
+                    </a>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">🎯</div>
+                    <h3 class="solution-title">Consultoria Especializada</h3>
+                    <p class="solution-description">
+                        Atendimento personalizado para médicos, empresários e 
+                        profissionais de alta performance.
+                    </p>
+                    <a href="/em-breve.html" class="solution-link">
+                        Saiba mais →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA FINAL -->
+    <section class="final-cta">
+        <div class="cta-box">
+            <h2>Pronto para Transformar Seu Futuro Financeiro?</h2>
+            <p>Agende uma conversa sem compromisso com nossos especialistas.</p>
+            <a href="#contato" class="cta-primary">Falar com Assessor →</a>
+        </div>
+    </section>
+    
+    <script>
+        // Gerar estrelas
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 300; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 2.5 + 0.5;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 4 + 's';
+            star.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
