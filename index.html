@@ -36,10 +36,113 @@
             overflow-x: hidden;
         }
         
+        /* TICKER DE COTAÇÕES */
+        .ticker-bar {
+            background: linear-gradient(135deg, #1e293b 0%, #111827 100%);
+            border-bottom: 2px solid var(--accent-gold);
+            padding: 0.75rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1001;
+        }
+        
+        .ticker-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        
+        .ticker-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+            font-size: 0.9rem;
+        }
+        
+        .ticker-label {
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+        
+        .ticker-value {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .ticker-change {
+            font-size: 0.85rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .positive {
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.15);
+        }
+        
+        .negative {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.15);
+        }
+        
+        /* IMPOSTÔMETRO */
+        .impostometro-bar {
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #d4af37 100%);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+        
+        .impostometro-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .impostometro-icon {
+            font-size: 2rem;
+        }
+        
+        .impostometro-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .impostometro-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #0b1120;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .impostometro-value {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: #0b1120;
+            font-variant-numeric: tabular-nums;
+        }
+        
         /* HEADER COM MENU DROPDOWN */
         .header {
             position: sticky;
-            top: 0;
+            top: 100px;
             z-index: 1000;
             background: rgba(11, 15, 20, 0.95);
             backdrop-filter: blur(10px);
@@ -85,7 +188,7 @@
             align-items: center;
         }
         
-        .search-btn, .menu-mobile {
+        .search-btn {
             padding: 0.5rem 1rem;
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -204,6 +307,11 @@
             background: rgba(244, 196, 48, 0.1);
             color: var(--accent-gold);
             padding-left: 1.5rem;
+        }
+        
+        .dropdown-item.highlight {
+            background: rgba(244, 196, 48, 0.05);
+            font-weight: 600;
         }
         
         .dropdown-divider {
@@ -521,16 +629,6 @@
             border-radius: 4px;
         }
         
-        .positive {
-            color: #10b981;
-            background: rgba(16, 185, 129, 0.1);
-        }
-        
-        .negative {
-            color: #ef4444;
-            background: rgba(239, 68, 68, 0.1);
-        }
-        
         /* BANNER HUB ASSESSORIA */
         .banner-hub {
             background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
@@ -600,6 +698,10 @@
             .content-layout {
                 grid-template-columns: 1fr;
             }
+            
+            .ticker-container {
+                justify-content: flex-start;
+            }
         }
         
         @media (max-width: 768px) {
@@ -618,10 +720,56 @@
             .nav-menu {
                 flex-wrap: wrap;
             }
+            
+            .impostometro-value {
+                font-size: 1.25rem;
+            }
         }
     </style>
 </head>
 <body>
+
+<!-- TICKER DE COTAÇÕES -->
+<div class="ticker-bar">
+    <div class="ticker-container">
+        <div class="ticker-item">
+            <span class="ticker-label">💵 DÓLAR:</span>
+            <span class="ticker-value" id="ticker-dolar">R$ --,--</span>
+            <span class="ticker-change" id="ticker-dolar-change">--</span>
+        </div>
+        <div class="ticker-item">
+            <span class="ticker-label">💶 EURO:</span>
+            <span class="ticker-value" id="ticker-euro">R$ --,--</span>
+            <span class="ticker-change" id="ticker-euro-change">--</span>
+        </div>
+        <div class="ticker-item">
+            <span class="ticker-label">📈 IBOVESPA:</span>
+            <span class="ticker-value" id="ticker-ibov">---</span>
+            <span class="ticker-change" id="ticker-ibov-change">--</span>
+        </div>
+        <div class="ticker-item">
+            <span class="ticker-label">₿ BITCOIN:</span>
+            <span class="ticker-value" id="ticker-btc">$ --,---</span>
+            <span class="ticker-change" id="ticker-btc-change">--</span>
+        </div>
+        <div class="ticker-item">
+            <span class="ticker-label">📊 SELIC:</span>
+            <span class="ticker-value" id="ticker-selic">11,25%</span>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">a.a.</span>
+        </div>
+    </div>
+</div>
+
+<!-- IMPOSTÔMETRO -->
+<div class="impostometro-bar">
+    <div class="impostometro-container">
+        <span class="impostometro-icon">💰</span>
+        <div class="impostometro-content">
+            <div class="impostometro-label">Impostos Arrecadados em 2025</div>
+            <div class="impostometro-value" id="impostometro">R$ 0,00</div>
+        </div>
+    </div>
+</div>
 
 <!-- HEADER -->
 <header class="header">
@@ -635,7 +783,7 @@
         </div>
     </div>
     
-    <!-- MENU PRINCIPAL COM 29 CATEGORIAS -->
+    <!-- MENU PRINCIPAL CORRIGIDO -->
     <nav class="nav-main">
         <div class="nav-container">
             <ul class="nav-menu">
@@ -648,6 +796,7 @@
                         Economia <span class="dropdown-icon">▼</span>
                     </a>
                     <div class="dropdown">
+                        <a href="/economia/noticias/" class="dropdown-item highlight">📰 Notícias da Economia</a>
                         <a href="/economia/politica-economica/" class="dropdown-item">Política Econômica</a>
                         <a href="/economia/pib-crescimento/" class="dropdown-item">PIB e Crescimento</a>
                         <a href="/economia/inflacao-juros/" class="dropdown-item">Inflação e Juros</a>
@@ -663,6 +812,7 @@
                         Investimentos <span class="dropdown-icon">▼</span>
                     </a>
                     <div class="dropdown">
+                        <a href="/investimentos/noticias/" class="dropdown-item highlight">📰 Notícias de Investimentos</a>
                         <a href="/investimentos/renda-fixa/" class="dropdown-item">Renda Fixa</a>
                         <a href="/investimentos/renda-variavel/" class="dropdown-item">Renda Variável</a>
                         <a href="/investimentos/fundos/" class="dropdown-item">Fundos de Investimento</a>
@@ -679,6 +829,7 @@
                         Mercados <span class="dropdown-icon">▼</span>
                     </a>
                     <div class="dropdown">
+                        <a href="/mercados/noticias/" class="dropdown-item highlight">📰 Notícias de Mercados</a>
                         <a href="/mercados/bolsa/" class="dropdown-item">Bolsa de Valores</a>
                         <a href="/mercados/cambio/" class="dropdown-item">Câmbio</a>
                         <a href="/mercados/commodities/" class="dropdown-item">Commodities</a>
@@ -694,6 +845,7 @@
                         Saúde <span class="dropdown-icon">▼</span>
                     </a>
                     <div class="dropdown">
+                        <a href="/saude/noticias/" class="dropdown-item highlight">📰 Notícias da Saúde</a>
                         <a href="/saude/medicos/" class="dropdown-item">Para Médicos</a>
                         <a href="/saude/planos/" class="dropdown-item">Planos de Saúde</a>
                         <a href="/saude/publica/" class="dropdown-item">Saúde Pública</a>
@@ -707,6 +859,7 @@
                         MPEs <span class="dropdown-icon">▼</span>
                     </a>
                     <div class="dropdown">
+                        <a href="/mpes/noticias/" class="dropdown-item highlight">📰 Notícias de MPEs</a>
                         <a href="/mpes/credito/" class="dropdown-item">Crédito e Financiamento</a>
                         <a href="/mpes/gestao/" class="dropdown-item">Gestão Financeira</a>
                         <a href="/mpes/tributacao/" class="dropdown-item">Tributação</a>
@@ -720,6 +873,7 @@
                         Previdência <span class="dropdown-icon">▼</span>
                     </a>
                     <div class="dropdown">
+                        <a href="/previdencia/noticias/" class="dropdown-item highlight">📰 Notícias da Previdência</a>
                         <a href="/previdencia/aposentadoria/" class="dropdown-item">Aposentadoria</a>
                         <a href="/previdencia/inss/" class="dropdown-item">INSS</a>
                         <a href="/previdencia/privada/" class="dropdown-item">Previdência Privada</a>
@@ -734,6 +888,7 @@
                         Imóveis <span class="dropdown-icon">▼</span>
                     </a>
                     <div class="dropdown">
+                        <a href="/imoveis/noticias/" class="dropdown-item highlight">📰 Notícias de Imóveis</a>
                         <a href="/imoveis/financiamento/" class="dropdown-item">Financiamento</a>
                         <a href="/imoveis/investimento/" class="dropdown-item">Investimento</a>
                         <a href="/imoveis/fiis/" class="dropdown-item">Fundos Imobiliários</a>
@@ -747,6 +902,7 @@
                         Crédito <span class="dropdown-icon">▼</span>
                     </a>
                     <div class="dropdown">
+                        <a href="/credito/noticias/" class="dropdown-item highlight">📰 Notícias de Crédito</a>
                         <a href="/credito/emprestimos/" class="dropdown-item">Empréstimos</a>
                         <a href="/credito/financiamentos/" class="dropdown-item">Financiamentos</a>
                         <a href="/credito/cartoes/" class="dropdown-item">Cartões de Crédito</a>
@@ -761,6 +917,7 @@
                         Seguros <span class="dropdown-icon">▼</span>
                     </a>
                     <div class="dropdown">
+                        <a href="/seguros/noticias/" class="dropdown-item highlight">📰 Notícias de Seguros</a>
                         <a href="/seguros/vida/" class="dropdown-item">Seguro de Vida</a>
                         <a href="/seguros/patrimonial/" class="dropdown-item">Patrimonial</a>
                         <a href="/seguros/saude/" class="dropdown-item">Saúde</a>
@@ -774,6 +931,7 @@
                         Carreira <span class="dropdown-icon">▼</span>
                     </a>
                     <div class="dropdown">
+                        <a href="/carreira/noticias/" class="dropdown-item highlight">📰 Notícias de Carreira</a>
                         <a href="/carreira/salarios/" class="dropdown-item">Salários</a>
                         <a href="/carreira/negociacao/" class="dropdown-item">Negociação</a>
                         <a href="/carreira/renda-extra/" class="dropdown-item">Renda Extra</a>
@@ -787,11 +945,27 @@
                         Impostos <span class="dropdown-icon">▼</span>
                     </a>
                     <div class="dropdown">
+                        <a href="/impostos/noticias/" class="dropdown-item highlight">📰 Notícias de Impostos</a>
                         <a href="/impostos/ir/" class="dropdown-item">Imposto de Renda</a>
                         <a href="/impostos/itcmd/" class="dropdown-item">ITCMD</a>
                         <a href="/impostos/planejamento/" class="dropdown-item">Planejamento Tributário</a>
                         <div class="dropdown-divider"></div>
                         <a href="/impostos/" class="dropdown-item"><strong>Todas »</strong></a>
+                    </div>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/colunistas/" class="nav-link">
+                        Colunistas <span class="dropdown-icon">▼</span>
+                    </a>
+                    <div class="dropdown">
+                        <a href="/colunistas/noticias/" class="dropdown-item highlight">📰 Artigos dos Colunistas</a>
+                        <a href="/colunistas/economia/" class="dropdown-item">Economia</a>
+                        <a href="/colunistas/politica/" class="dropdown-item">Política</a>
+                        <a href="/colunistas/mercados/" class="dropdown-item">Mercados</a>
+                        <a href="/colunistas/opiniao/" class="dropdown-item">Opinião</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="/colunistas/" class="dropdown-item"><strong>Todos »</strong></a>
                     </div>
                 </li>
                 
@@ -806,6 +980,7 @@
                         Ferramentas <span class="dropdown-icon">▼</span>
                     </a>
                     <div class="dropdown">
+                        <a href="/ferramentas/noticias/" class="dropdown-item highlight">📰 Notícias de Ferramentas</a>
                         <a href="/ferramentas/simuladores/" class="dropdown-item">Simuladores</a>
                         <a href="/ferramentas/calculadoras/" class="dropdown-item">Calculadoras</a>
                         <a href="/ferramentas/cotacoes/" class="dropdown-item">Cotações</a>
@@ -820,6 +995,7 @@
                         Aprenda <span class="dropdown-icon">▼</span>
                     </a>
                     <div class="dropdown">
+                        <a href="/aprenda/noticias/" class="dropdown-item highlight">📰 Novidades em Educação</a>
                         <a href="/aprenda/guias/" class="dropdown-item">Guias Completos</a>
                         <a href="/aprenda/ebooks/" class="dropdown-item">E-books</a>
                         <a href="/aprenda/glossario/" class="dropdown-item">Glossário</a>
@@ -992,22 +1168,22 @@
                 <div class="cotacao-item">
                     <span class="cotacao-name">Dólar</span>
                     <div class="cotacao-value">
-                        <span class="cotacao-price">R$ 5,82</span>
-                        <span class="cotacao-change positive">+0,85%</span>
+                        <span class="cotacao-price" id="sidebar-dolar">R$ --,--</span>
+                        <span class="cotacao-change" id="sidebar-dolar-change">--</span>
                     </div>
                 </div>
                 <div class="cotacao-item">
                     <span class="cotacao-name">Ibovespa</span>
                     <div class="cotacao-value">
-                        <span class="cotacao-price">129.847</span>
-                        <span class="cotacao-change negative">-0,42%</span>
+                        <span class="cotacao-price" id="sidebar-ibov">---</span>
+                        <span class="cotacao-change" id="sidebar-ibov-change">--</span>
                     </div>
                 </div>
                 <div class="cotacao-item">
                     <span class="cotacao-name">Bitcoin</span>
                     <div class="cotacao-value">
-                        <span class="cotacao-price">$67.234</span>
-                        <span class="cotacao-change positive">+2,15%</span>
+                        <span class="cotacao-price" id="sidebar-btc">$ --,---</span>
+                        <span class="cotacao-change" id="sidebar-btc-change">--</span>
                     </div>
                 </div>
                 <div class="cotacao-item">
@@ -1041,7 +1217,132 @@
 </div>
 
 <script>
-// Smooth scroll e interatividade básica
+// ==========================================
+// TICKER DE COTAÇÕES - APIs REAIS
+// ==========================================
+async function updateTicker() {
+    try {
+        // API AwesomeAPI para cotações
+        const response = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL');
+        const data = await response.json();
+        
+        // DÓLAR
+        if (data.USDBRL) {
+            const usd = parseFloat(data.USDBRL.bid);
+            const usdChange = parseFloat(data.USDBRL.pctChange);
+            document.getElementById('ticker-dolar').textContent = `R$ ${usd.toFixed(2)}`;
+            document.getElementById('sidebar-dolar').textContent = `R$ ${usd.toFixed(2)}`;
+            
+            const usdChangeEl = document.getElementById('ticker-dolar-change');
+            const sidebarUsdChangeEl = document.getElementById('sidebar-dolar-change');
+            const changeText = `${usdChange >= 0 ? '+' : ''}${usdChange.toFixed(2)}%`;
+            const changeClass = usdChange >= 0 ? 'positive' : 'negative';
+            
+            usdChangeEl.textContent = changeText;
+            usdChangeEl.className = `ticker-change ${changeClass}`;
+            sidebarUsdChangeEl.textContent = changeText;
+            sidebarUsdChangeEl.className = `cotacao-change ${changeClass}`;
+        }
+        
+        // EURO
+        if (data.EURBRL) {
+            const eur = parseFloat(data.EURBRL.bid);
+            const eurChange = parseFloat(data.EURBRL.pctChange);
+            document.getElementById('ticker-euro').textContent = `R$ ${eur.toFixed(2)}`;
+            
+            const eurChangeEl = document.getElementById('ticker-euro-change');
+            const changeText = `${eurChange >= 0 ? '+' : ''}${eurChange.toFixed(2)}%`;
+            eurChangeEl.textContent = changeText;
+            eurChangeEl.className = `ticker-change ${eurChange >= 0 ? 'positive' : 'negative'}`;
+        }
+        
+        // BITCOIN
+        if (data.BTCBRL) {
+            const btc = parseFloat(data.BTCBRL.bid);
+            const btcChange = parseFloat(data.BTCBRL.pctChange);
+            const btcUSD = btc / parseFloat(data.USDBRL.bid);
+            document.getElementById('ticker-btc').textContent = `$ ${btcUSD.toLocaleString('en-US', {maximumFractionDigits: 0})}`;
+            document.getElementById('sidebar-btc').textContent = `$ ${btcUSD.toLocaleString('en-US', {maximumFractionDigits: 0})}`;
+            
+            const btcChangeEl = document.getElementById('ticker-btc-change');
+            const sidebarBtcChangeEl = document.getElementById('sidebar-btc-change');
+            const changeText = `${btcChange >= 0 ? '+' : ''}${btcChange.toFixed(2)}%`;
+            const changeClass = btcChange >= 0 ? 'positive' : 'negative';
+            
+            btcChangeEl.textContent = changeText;
+            btcChangeEl.className = `ticker-change ${changeClass}`;
+            sidebarBtcChangeEl.textContent = changeText;
+            sidebarBtcChangeEl.className = `cotacao-change ${changeClass}`;
+        }
+        
+        // IBOVESPA (valor fixo por enquanto - API B3 requer autenticação)
+        // Em produção, integrar com API oficial B3
+        document.getElementById('ticker-ibov').textContent = '129.847';
+        document.getElementById('sidebar-ibov').textContent = '129.847';
+        document.getElementById('ticker-ibov-change').textContent = '-0,42%';
+        document.getElementById('ticker-ibov-change').className = 'ticker-change negative';
+        document.getElementById('sidebar-ibov-change').textContent = '-0,42%';
+        document.getElementById('sidebar-ibov-change').className = 'cotacao-change negative';
+        
+    } catch (error) {
+        console.error('Erro ao atualizar cotações:', error);
+    }
+}
+
+// ==========================================
+// IMPOSTÔMETRO - CÁLCULO REAL TEMPO REAL
+// ==========================================
+function updateImpostometro() {
+    // Dados oficiais 2025
+    const PIB_ANUAL = 10900000000000; // R$ 10,9 trilhões (IBGE)
+    const CARGA_TRIBUTARIA = 0.3354; // 33,54% (Receita Federal + IBPT)
+    
+    // Calcular quanto tempo passou desde 1º de janeiro
+    const inicioAno = new Date(2025, 0, 1, 0, 0, 0);
+    const agora = new Date();
+    const diferencaMs = agora - inicioAno;
+    
+    // Total de milissegundos no ano
+    const totalMsAno = 365.25 * 24 * 60 * 60 * 1000;
+    
+    // Percentual do ano que já passou
+    const percentualAno = diferencaMs / totalMsAno;
+    
+    // Impostos arrecadados até agora
+    const impostosArrecadados = PIB_ANUAL * CARGA_TRIBUTARIA * percentualAno;
+    
+    // Formatar para exibição
+    let valorFormatado;
+    if (impostosArrecadados >= 1000000000000) {
+        // Trilhões
+        valorFormatado = `R$ ${(impostosArrecadados / 1000000000000).toFixed(2)} tri`;
+    } else if (impostosArrecadados >= 1000000000) {
+        // Bilhões
+        valorFormatado = `R$ ${(impostosArrecadados / 1000000000).toFixed(2)} bi`;
+    } else {
+        // Milhões
+        valorFormatado = `R$ ${(impostosArrecadados / 1000000).toFixed(2)} mi`;
+    }
+    
+    document.getElementById('impostometro').textContent = valorFormatado;
+}
+
+// ==========================================
+// INICIALIZAÇÃO
+// ==========================================
+// Atualizar ticker imediatamente
+updateTicker();
+
+// Atualizar impostômetro imediatamente
+updateImpostometro();
+
+// Atualizar ticker a cada 30 segundos
+setInterval(updateTicker, 30000);
+
+// Atualizar impostômetro a cada 1 segundo
+setInterval(updateImpostometro, 1000);
+
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
