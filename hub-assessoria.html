@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub de Assessoria - Soluções Estratégicas | O Valor Capital</title>
+    <meta name="description" content="Assessoria especializada em proteção patrimonial, investimentos globais, saúde corporativa e proteção profissional para executivos, médicos e empresários.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0e13;
+            --bg-secondary: #0f1419;
+            --bg-card: #141922;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-gold: #d4af37;
+            --accent-blue: #1e40af;
+            --border: #1e293b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 70vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0e13 0%, #1e40af 100%);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(30, 64, 175, 0.15) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--accent-gold);
+            border-radius: 50px;
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-ctas {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--accent-gold);
+            color: #0a0e13;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--accent-gold);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50px;
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* SOLUÇÕES GRID */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .solution-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold), transparent);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.15);
+        }
+        
+        .solution-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .solution-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .solution-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .solution-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .solution-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .solution-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .solution-features li::before {
+            content: '✓';
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+        
+        .solution-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            text-decoration: none;
+            transition: gap 0.3s;
+        }
+        
+        .solution-cta:hover {
+            gap: 1rem;
+        }
+        
+        /* STATS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin: 4rem 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-gold), #f4c430);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        /* PERFIS */
+        .profiles-section {
+            background: var(--bg-secondary);
+            padding: 6rem 2rem;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text-secondary);
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn:hover,
+        .tab-btn.active {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+        
+        .tab-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .profile-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .profile-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-list li {
+            padding: 0.75rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(30, 41, 59, 0.3);
+        }
+        
+        .profile-list li::before {
+            content: '✓';
+            color: var(--accent-gold);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .profile-quote {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 4px solid var(--accent-gold);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+        
+        /* PROCESSO */
+        .process-timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .process-step::after {
+            content: '→';
+            position: absolute;
+            right: -1.5rem;
+            top: 2rem;
+            font-size: 2rem;
+            color: var(--accent-gold);
+            opacity: 0.3;
+        }
+        
+        .process-step:last-child::after {
+            display: none;
+        }
+        
+        .process-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-gold), #f4c430);
+            color: #0a0e13;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin: 0 auto 1rem;
+        }
+        
+        .process-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .process-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        /* DIFERENCIAIS */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .benefit-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+        
+        .benefit-item:hover {
+            border-color: var(--accent-gold);
+            transform: translateX(8px);
+        }
+        
+        .benefit-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+        
+        .benefit-content h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .benefit-content p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* CTA FINAL */
+        .cta-final {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            border-radius: 24px;
+            padding: 5rem 3rem;
+            text-align: center;
+            margin: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-text {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-small {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 1rem;
+        }
+        
+        /* FOOTER */
+        .hub-footer {
+            background: var(--bg-secondary);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-text {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+        
+        /* RESPONSIVO */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+            
+            .process-timeline {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                padding: 4rem 0;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .process-timeline {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-step::after {
+                content: '↓';
+                right: auto;
+                left: 50%;
+                top: auto;
+                bottom: -1.5rem;
+                transform: translateX(-50%);
+            }
+            
+            .cta-final {
+                padding: 3rem 2rem;
+            }
+            
+            .cta-title {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-badge">Assessoria Especializada</span>
+        <h1 class="hero-title">Hub de Assessoria</h1>
+        <p class="hero-subtitle">Soluções Estratégicas para Patrimônio e Crescimento</p>
+        <p class="hero-description">Assessoria especializada para profissionais, executivos e empresários que buscam proteção, crescimento e tranquilidade patrimonial através de estratégias personalizadas.</p>
+        <div class="hero-ctas">
+            <a href="#contato" class="btn btn-primary">Falar com Especialista</a>
+            <a href="#solucoes" class="btn btn-secondary">Conhecer Soluções</a>
+        </div>
+    </div>
+</section>
+
+<!-- SOLUÇÕES DISPONÍVEIS -->
+<section class="container" id="solucoes">
+    <div class="section-header">
+        <span class="section-badge">Principais Áreas</span>
+        <h2 class="section-title">Soluções Disponíveis no Mercado</h2>
+        <p class="section-description">Entenda como funcionam as principais estratégias de proteção e crescimento patrimonial</p>
+    </div>
+    
+    <div class="solutions-grid">
+        <div class="solution-card">
+            <span class="solution-icon">🛡️</span>
+            <h3 class="solution-title">Proteção Patrimonial</h3>
+            <p class="solution-description">Como funciona a blindagem inteligente de patrimônio e sucessão planejada.</p>
+            <ul class="solution-features">
+                <li>Sucessão patrimonial estruturada</li>
+                <li>Liquidez imediata para família</li>
+                <li>Redução de custos sucessórios</li>
+                <li>Proteção contra ITCMD</li>
+            </ul>
+            <a href="#" class="solution-cta">Calcular Necessidade →</a>
+        </div>
+        
+        <div class="solution-card">
+            <span class="solution-icon">🌍</span>
+            <h3 class="solution-title">Investimentos Globais</h3>
+            <p class="solution-description">Diversificação em moeda forte e aposentadoria com segurança cambial.</p>
+            <ul class="solution-features">
+                <li>Dominion Capital</li>
+                <li>Exposição em Dólar e Euro</li>
+                <li>Offshore estruturado</li>
+                <li>Aposentadoria internacional</li>
+            </ul>
+            <a href="#" class="solution-cta">Simular Carteira →</a>
+        </div>
+        
+        <div class="solution-card">
+            <span class="solution-icon">❤️</span>
+            <h3 class="solution-title">Saúde Corporativa</h3>
+            <p class="solution-description">Benefícios inteligentes para sua equipe com gestão eficiente de custos.</p>
+            <ul class="solution-features">
+                <li>Planos PME otimizados</li>
+                <li>Coparticipação estratégica</li>
+                <li>Rede credenciada premium</li>
+                <li>Tax efficiency</li>
+            </ul>
+            <a href="#" class="solution-cta">Cotar Plano →</a>
+        </div>
+        
+        <div class="solution-card">
+            <span class="solution-icon">⚖️</span>
+            <h3 class="solution-title">Proteção Profissional</h3>
+            <p class="solution-description">Segurança jurídica completa para profissionais de alta exposição.</p>
+            <ul class="solution-features">
+                <li>Defesa judicial especializada</li>
+                <li>RC profissional</li>
+                <li>Planejamento tributário</li>
+                <li>Associação ANADEM</li>
+            </ul>
+            <a href="#" class="solution-cta">Conhecer Proteção →</a>
+        </div>
+    </div>
+</section>
+
+<!-- ESTATÍSTICAS -->
+<section class="container">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <div class="stat-number">25+</div>
+            <div class="stat-label">Anos de experiência no mercado brasileiro</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">R$ 300Mi+</div>
+            <div class="stat-label">Em patrimônio protegido</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">12.000+</div>
+            <div class="stat-label">Clientes atendidos com excelência</div>
+        </div>
+    </div>
+</section>
+
+<!-- PERFIS -->
+<section class="profiles-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Quem Atendemos</span>
+            <h2 class="section-title">Soluções por Perfil</h2>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab-btn active">Médicos</button>
+            <button class="tab-btn">Executivos</button>
+            <button class="tab-btn">Empresários</button>
+            <button class="tab-btn">Profissionais Liberais</button>
+        </div>
+        
+        <div class="tab-content">
+            <h3 class="profile-title">Proteção Completa para Médicos</h3>
+            <p class="profile-description">Profissionais da saúde que cuidam de vidas precisam cuidar do próprio patrimônio com a mesma dedicação.</p>
+            
+            <ul class="profile-list">
+                <li>Proteção jurídica ANADEM completa</li>
+                <li>Responsabilidade Civil profissional</li>
+                <li>Planejamento sucessório especializado</li>
+                <li>Investimentos offshore estruturados</li>
+                <li>Planos de saúde PME otimizados</li>
+            </ul>
+            
+            <div class="profile-quote">
+                "Atendemos mais de 2.000 médicos em todo Brasil com soluções integradas de proteção patrimonial e crescimento."
+            </div>
+            
+            <a href="#" class="btn btn-primary">Assessoria para Médicos →</a>
+        </div>
+    </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="container">
+    <div class="section-header">
+        <span class="section-badge">Processo</span>
+        <h2 class="section-title">Como Funciona</h2>
+        <p class="section-description">Metodologia estruturada em 4 etapas</p>
+    </div>
+    
+    <div class="process-timeline">
+        <div class="process-step">
+            <div class="process-number">1</div>
+            <h4 class="process-title">Diagnóstico</h4>
+            <p class="process-description">Análise completa do seu momento e objetivos</p>
+        </div>
+        <div class="process-step">
+            <div class="process-number">2</div>
+            <h4 class="process-title">Estratégia</h4>
+            <p class="process-description">Desenho de soluções personalizadas</p>
+        </div>
+        <div class="process-step">
+            <div class="process-number">3</div>
+            <h4 class="process-title">Implementação</h4>
+            <p class="process-description">Execução com parceiros de excelência</p>
+        </div>
+        <div class="process-step">
+            <div class="process-number">4</div>
+            <h4 class="process-title">Acompanhamento</h4>
+            <p class="process-description">Revisões periódicas e ajustes</p>
+        </div>
+    </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="container">
+    <div class="section-header">
+        <span class="section-badge">Diferenciais</span>
+        <h2 class="section-title">Por Que Assessoria Especializada?</h2>
+    </div>
+    
+    <div class="benefits-grid">
+        <div class="benefit-item">
+            <div class="benefit-icon">🎯</div>
+            <div class="benefit-content">
+                <h3>Personalização Total</h3>
+                <p>Cada solução desenhada para seu momento e objetivos específicos</p>
+            </div>
+        </div>
+        
+        <div class="benefit-item">
+            <div class="benefit-icon">🤝</div>
+            <div class="benefit-content">
+                <h3>Parceiros Premium</h3>
+                <p>Selecionamos apenas instituições de excelência comprovada</p>
+            </div>
+        </div>
+        
+        <div class="benefit-item">
+            <div class="benefit-icon">🔒</div>
+            <div class="benefit-content">
+                <h3>Confidencialidade</h3>
+                <p>Sigilo absoluto em todas as operações e informações</p>
+            </div>
+        </div>
+        
+        <div class="benefit-item">
+            <div class="benefit-icon">📊</div>
+            <div class="benefit-content">
+                <h3>Visão Integrada</h3>
+                <p>Enxergamos seu patrimônio de forma holística e estratégica</p>
+            </div>
+        </div>
+        
+        <div class="benefit-item">
+            <div class="benefit-icon">⚡</div>
+            <div class="benefit-content">
+                <h3>Agilidade</h3>
+                <p>Processos otimizados sem burocracia desnecessária</p>
+            </div>
+        </div>
+        
+        <div class="benefit-item">
+            <div class="benefit-icon">💼</div>
+            <div class="benefit-content">
+                <h3>Relacionamento Dedicado</h3>
+                <p>Assessor exclusivo para acompanhar sua jornada</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="container">
+    <div class="cta-final" id="contato">
+        <div class="cta-content">
+            <h2 class="cta-title">Pronto para uma conversa sem compromisso?</h2>
+            <p class="cta-text">Nossa equipe está preparada para entender seu momento e desenhar soluções sob medida.</p>
+            <a href="https://api.whatsapp.com/send?phone=5511999999999&text=Olá, vim do Hub de Assessoria e gostaria de conhecer as soluções" class="btn btn-primary" style="font-size: 1.1rem; padding: 1.25rem 3rem;">Agendar Conversa</a>
+            <p class="cta-small">Atendimento em até 24h</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="hub-footer">
+    <div class="footer-logo">Hub de Assessoria</div>
+    <p class="footer-text">Parceiro Estratégico · O Valor Capital</p>
+    <div class="footer-links">
+        <a href="/">Portal</a>
+        <a href="/institucional/">Sobre</a>
+        <a href="/politica-editorial/">Política Editorial</a>
+        <a href="/contato/">Contato</a>
+    </div>
+    <p style="color: var(--text-muted); font-size: 0.9rem;">© 2025 O Valor Capital. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>
