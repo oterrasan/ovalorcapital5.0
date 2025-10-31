@@ -197,11 +197,22 @@
             display: flex;
             list-style: none;
             overflow-x: auto;
-            scrollbar-width: none;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-gold) var(--bg-secondary);
+            padding-bottom: 0.5rem;
         }
         
         .nav-menu::-webkit-scrollbar {
-            display: none;
+            height: 4px;
+        }
+        
+        .nav-menu::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        
+        .nav-menu::-webkit-scrollbar-thumb {
+            background: var(--accent-gold);
+            border-radius: 4px;
         }
         
         .nav-item {
@@ -247,22 +258,24 @@
             position: absolute;
             top: 100%;
             left: 0;
-            min-width: 250px;
+            min-width: 280px;
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 0 0 12px 12px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
-            transition: all 0.3s;
-            z-index: 100;
+            transition: all 0.3s ease;
+            z-index: 200;
+            pointer-events: none;
         }
         
         .nav-item:hover .dropdown {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
+            pointer-events: auto;
         }
         
         .dropdown-item {
